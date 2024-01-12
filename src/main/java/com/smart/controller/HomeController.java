@@ -13,16 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String home(Model model){
-        model.addAttribute("title","Question Manager");
+        model.addAttribute("title","Question Manager-home");
         return "home";
     }
 
     @RequestMapping("/about")
     public String about(Model model){
-        model.addAttribute("title","About");
+        model.addAttribute("title","Question Manager-About");
         return "about";
+    }
+
+    @RequestMapping("/signup")
+    public String signup(Model model){
+        model.addAttribute("title","Question Manager-Signup");
+        return "signup";
     }
 
 }

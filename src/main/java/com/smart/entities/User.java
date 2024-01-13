@@ -1,6 +1,7 @@
 package com.smart.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,15 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+//    form ki input fields bhi same name ki banana jo name yaha use kre hai
     private int id;
+    @Size(min=3,max=25,message = "Minimum 3 and Maximum 25 characters allowed")
     private String name;
     private  String password;
     @Column(unique = true)
     private String email;
     private String imageUrl;
+    @Size(min=3,max=100,message = "Minimum 3 and Maximum 100 characters allowed")
     private String about;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -80,4 +84,16 @@ public class User {
         this.questions = questions;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", about='" + about + '\'' +
+                ", questions=" + questions +
+                '}';
+    }
 }

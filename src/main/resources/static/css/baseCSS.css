@@ -1,22 +1,28 @@
-body{
-background:black;}
 
-/* this is used by navbar*/
-
-.bg-primary{
-  background:#e2e2e2;
-}
 
 .banner{
  width:100%;
  height:93vh;
  background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url(../images/banner.jpg);
  background-size:cover;
+ color: white;
 }
+
+.button-custom{
+ background-color: #b9b90b;
+ color: black;
+ border-color: black;
+}
+
+.button-custom:hover{
+  background-color: #a5a50b;
+  color: black;
+  border-color: black;
+ }
+
+
 
 .mycard{
   padding:20px;
   background:#ffffff;
-
-
 }

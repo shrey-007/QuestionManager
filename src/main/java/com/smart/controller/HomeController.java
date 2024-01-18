@@ -47,6 +47,8 @@ public class HomeController {
     //validation mai jo bhi error hoga voh bindingResult ke object mai aa jaaega,and error ka message bhi usi mai hoga.vo error ka msg and message class dono alag hai
     public String register(@Valid @ModelAttribute("user") User user,BindingResult bindingResult, @RequestParam(value = "agreement",defaultValue = "false") boolean agreement, Model model, HttpSession session){
        try{
+           System.out.println(agreement);
+           System.out.println(user);
            if(!agreement){
                throw new Exception("You have not agreed terms and conditions");
            }

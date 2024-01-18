@@ -44,23 +44,31 @@ public class HomeController {
     //form mai jitni fields hai vo saari User class se map ho jaaegi by ModelAttribute coz name same hai dono jagah
     //checkbox is not property of user toh usko alag se request param mai liya hai.
     //and yaha se data vaapis form mai bhejne ke liye model object liya hai
+    //validation mai jo bhi error hoga voh bindingResult ke object mai aa jaaega,and error ka message bhi usi mai hoga.vo error ka msg and message class dono alag hai
     public String register(@Valid @ModelAttribute("user") User user,BindingResult bindingResult, @RequestParam(value = "agreement",defaultValue = "false") boolean agreement, Model model, HttpSession session){
        try{
            if(!agreement){
                throw new Exception("You have not agreed terms and conditions");
            }
            if(bindingResult.hasErrors()){
+               //since error aayi hai toh puraana vala user hi bhej do
                model.addAttribute("user",user);
                return "signup";
            }
+           //save user in database
            User result=this.userRepository.save(user);
-           //jo user aaye usi ko vaapis bhej diya
+
+           //is baar database mai user save ho gya toh form mai vaapis se details dikhaane ki need nhi hai, simply new object bhejo.
            model.addAttribute("user",new User());
+           //since user register ho gya toh success msg bhej do
            session.setAttribute("message",new Message("Successfully Registered","alert-success"));
        }
        catch (Exception e){
           e.printStackTrace();
+          //yaha tab aaege jab error aaegi
+           //jo user ka data aaya hai  usi ko vaapis bhej diya, toh user ko vaapis form nhi bharna padega.
           model.addAttribute("user",user);
+          //session attribute liya hi isliye hai taaki message bhej sako
           session.setAttribute("message",new Message("something went wrong"+e.getMessage(),"alert-danger"));
        }
         return "signup";

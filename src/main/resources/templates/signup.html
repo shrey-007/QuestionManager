@@ -54,9 +54,9 @@
                   <label for="agreement">Accept terms and conditions</label>
               </div>
 
-<!--              alert-->
+<!--              jab session se message tabhi ye dikhega-->
               <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
-                  <p class="tect-center" th:text="${session.message.content}"></p>
+                  <p class="text-center" th:text="${session.message.content}"></p>
                   <th:block th:remove="all"></th:block>
               </div>
 

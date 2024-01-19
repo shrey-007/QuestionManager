@@ -1,5 +1,5 @@
 
-
+/*this is for banner image in home page*/
 .banner{
  width:100%;
  height:93vh;
@@ -7,7 +7,7 @@
  background-size:cover;
  color: white;
 }
-
+/*this is for buttons in all page, you just have to give them id as button-custom*/
 .button-custom{
  background-color: #b9b90b;
  color: black;
@@ -20,9 +20,35 @@
   border-color: black;
  }
 
+/*this is for footer*/
+footer{
+   background-color: #221d1d;
+   height: 300;
+   color:white;
+   text-align: center;
+      }
+footer div a i {
+   /* to set size of icons of insta etc */
+   font-size: 30px;
+   /* to set distance betwen them */
+   margin: 10;
+   /* to set color of icons  */
+   color: yellow;
+ }
+ footer div a  {
+    margin: 1%;
+  }
+/* i want address to be shown on left side so for that below css is written */
+/*.address{
+    background-color: #221d1d;
+    float: left;
+    margin-left: 8;
+}
+.address p{
+    float: left;
+}*/
 
-
-.mycard{
+/*.mycard{
   padding:20px;
   background:#ffffff;
-}
+}*/

@@ -63,7 +63,7 @@ public class HomeController {
            //is baar database mai user save ho gya toh form mai vaapis se details dikhaane ki need nhi hai, simply new object bhejo.
            model.addAttribute("user",new User());
            //since user register ho gya toh success msg bhej do
-           session.setAttribute("message",new Message("Successfully Registered","alert-success"));
+           session.setAttribute("message",new Message("Successfully Registered.Please go to Login Page","alert-success"));
        }
        catch (Exception e){
           e.printStackTrace();
@@ -71,7 +71,7 @@ public class HomeController {
            //jo user ka data aaya hai  usi ko vaapis bhej diya, toh user ko vaapis form nhi bharna padega.
           model.addAttribute("user",user);
           //session attribute liya hi isliye hai taaki message bhej sako
-          session.setAttribute("message",new Message("something went wrong"+e.getMessage(),"alert-danger"));
+          session.setAttribute("message",new Message("Something went wrong."+e.getMessage(),"alert-danger"));
        }
         return "signup";
     }

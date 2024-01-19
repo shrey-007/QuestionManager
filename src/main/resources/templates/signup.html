@@ -8,11 +8,18 @@
 
 
 <section>
+<!--    main point is ki tum jo bhi cheej likh rhe ho voh section ke under hi likho else vo apply nhi hoga
+        like example mai agar tum head ke under style tag mai css daaloge toh voh apply nhi hogi,
+        tumhe agar signup page pr css daalni hai toh ya toh baseCSS.css mai daalo
+        ya signup.css mai daalo but use signup.html se link na krke base.html se link kro
+        -->
+    <br>
+
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-6 offset-md-3" style="background-color: rgb(11, 11, 11);">
         <div class="my-card mt-3">
-          <h1 class="text-center">Sign Up</h1>
+          <h1 class="text-center" style="color:white;">Sign Up</h1>
 <!--            jo user controller se model attribute mai aa rha hai use yaha fetch kr rhe hai.-->
 
           <form th:action="@{/do_register}" method="post" th:object="${user}">
@@ -20,7 +27,7 @@
 <!--            name-->
 
             <div class="form-group">
-              <label for="name_field">Name</label>
+              <label for="name_field" style="color:white;">Name</label>
 <!--                th:value se vo value aajjaegi jo value tumne form mai pehle daala thi, toh agar form validation mai error aayi toh dobaara starting se form nhi bharna padega-->
               <input name="name" type="text" class="form-control" id="name_field" aria-describedby="emailHelp" placeholder="Enter Here" th:value="${user.name}"  th:classappend="${#fields.hasErrors('name')}?'is-invalid':''" required>
               <div style="color:red;" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
@@ -29,29 +36,29 @@
 <!--            email-->
 
             <div class="form-group">
-              <label for="email_field">Email</label>
+              <label for="email_field" style="color:white;">Email</label>
               <input name="email" type="email" class="form-control" id="email_field" aria-describedby="emailHelp" placeholder="Enter Here" th:value="${user.email}" required>
             </div>
 
 <!--            password-->
 
             <div class="form-group">
-              <label for="password_field">Password</label>
+              <label for="password_field" style="color:white;">Password</label>
               <input name="password" type="password" class="form-control" id="password_field" aria-describedby="emailHelp" placeholder="Enter Here"  required>
             </div>
 
 <!--            about-->
 
             <div class="form-group">
-              <label for="about_field">About</label>
-              <textarea name="about" class="form-control" id="about_field" aria-describedby="emailHelp" placeholder="Enter About Yourself" rows="10" th:text="${user.about}" required></textarea>
+              <label for="about_field" style="color:white;">About</label>
+              <textarea name="about" class="form-control" id="about_field" aria-describedby="emailHelp" placeholder="Enter About Yourself" rows="" th:text="${user.about}" required></textarea>
             </div>
 
 <!--              checkbox-->
 
               <div class="form-group form check text-center">
                   <input type="checkbox" name="agreement" class="form-check-input" id="agreement">
-                  <label for="agreement">Accept terms and conditions</label>
+                  <label for="agreement" style="color:white;">Accept terms and conditions</label>
               </div>
 
 <!--              jab session se message tabhi ye dikhega-->
@@ -68,7 +75,7 @@
 
 
 
-
+          <br>
 
           </form>
         </div>

@@ -22,11 +22,7 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("/about")
-    public String about(Model model){
-        model.addAttribute("title","Question Manager-About");
-        return "about";
-    }
+
 
     @RequestMapping("/signup")
     public String signup(Model model){
@@ -103,6 +99,8 @@ public class HomeController {
             return "login";
         }
 
+        //send user to dashboard
+        model.addAttribute("user",user);
 
         return "dashboard";
     }

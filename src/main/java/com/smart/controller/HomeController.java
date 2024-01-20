@@ -76,4 +76,35 @@ public class HomeController {
         return "signup";
     }
 
+
+    @RequestMapping("/login")
+    public String login(Model model){
+        model.addAttribute("user",new User());
+        return "login";
+    }
+
+    @RequestMapping("/do_login")
+    public String check(@RequestParam(value = "email")String email,@RequestParam(value = "password")String password,HttpSession session,Model model){
+        //get user from email as email is unique
+        User user=userRepository.findByEmail(email);
+
+
+        //check whether user is null or not, coz maybe email jo usne daala vo database m ho hi na
+        //also check whether the user password is correct or not
+        try{
+            if(user==null || !(user.getPassword().equals(password))){
+                throw new Exception("Incorrect Username or Password");
+            }
+        }
+        catch (Exception e){
+            session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+            model.addAttribute("user",new User());
+            //agar exception aayi toh vaapis login page pr chala jaaega agar nhi aayi tab dashboard pr jaaega.
+            return "login";
+        }
+
+
+        return "dashboard";
+    }
+
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="userBasePage::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<section>
+
+  <div class="card mr-3">
+    <div class="card-body">
+      <h1 class="text-center">Add Question</h1>
+      <div class="container-fluid mt-1">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <form action="" th:object="${question}" enctype="multipart/form-data" method="post" th:action="@{/saveQuestion}" class="mt-2">
+
+
+<!--              name-->
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-plus"></i>
+                  </div>
+                </div>
+                <input type="text" id="name" name="name" placeholder="Enter Name Here" class="form-control"/>
+              </div>
+
+<!--              description  -->
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </div>
+                    <input type="text" id="description" name="description" placeholder="Enter Description Here" class="form-control"/>
+                </div>
+
+<!--               notes -->
+                <div class="form-group mt-3">
+                    <textarea name="notes" id="notes"  cols="30" rows="10" class="form-control" placeholder="Add a note"></textarea>
+                </div>
+
+<!--                image-->
+                <div class="custom-file">
+                    <input type="file" name="imageName">
+                </div>
+                <!--                file-->
+                <div class="custom-file">
+                    <input type="file" name="fileName">
+                </div>
+
+                <div class="container text-center">
+                    <button class="btn btn-outline-primary">Save</button>
+                </div>
+
+
+
+
+
+
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</section>
+
+
+</body>
+</html>

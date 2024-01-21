@@ -22,7 +22,7 @@ public class User {
     @Size(min=3,max=100,message = "Minimum 3 and Maximum 100 characters allowed")
     private String about;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Question> questions=new ArrayList<>();
 
     public User() {

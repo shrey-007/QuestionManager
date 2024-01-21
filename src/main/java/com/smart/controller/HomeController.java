@@ -98,11 +98,26 @@ public class HomeController {
             //agar exception aayi toh vaapis login page pr chala jaaega agar nhi aayi tab dashboard pr jaaega.
             return "login";
         }
+        //create a session for current user
+        session.setAttribute("currentUser",user);
 
         //send user to dashboard
         model.addAttribute("user",user);
 
         return "dashboard";
+    }
+
+    @RequestMapping("/dashboard")
+    public String dashboard(Model model,HttpSession session){
+        User user=(User) session.getAttribute("currentUser");
+        model.addAttribute("user",user);
+        return "dashboard";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(Model model,HttpSession session){
+        session.removeAttribute("currentUser");
+        return "home";
     }
 
 }

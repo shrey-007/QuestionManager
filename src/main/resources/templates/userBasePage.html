@@ -19,7 +19,7 @@
 <body>
 
 <!--   NAVBAR-->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #221d1d;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #221d1d;">
   <a class="navbar-brand" >Questions Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -50,7 +50,7 @@
 
 
 <!--SIDE BAR START-->
-<div class="sidebar">
+<div class="sidebar mt-2">
   <span onclick="toggleSidebar()" class="crossBtn" style="color:yellow;">&times;</span>
   <a href="" class="item" th:href="@{/dashboard}"><i class="fas fa-home"></i>Home</a>
   <a href="" class="item"><i class="fas fa-user-circle"></i>Profile</a>
@@ -64,7 +64,7 @@
 <!--BUTTON FOR SIDE BAR-->
 
 <!--CONTENT-->
-<div class="content">
+<div class="content mt-5">
   <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
   <div th:replace="${content}"></div>
 </div>

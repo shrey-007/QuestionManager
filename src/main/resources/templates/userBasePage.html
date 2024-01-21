@@ -51,7 +51,7 @@
 
 <!--SIDE BAR START-->
 <div class="sidebar mt-2">
-  <span onclick="toggleSidebar()" class="crossBtn" style="color:yellow;">&times;</span>
+  <span onclick="toggleSidebar()" class="crossBtn" style="color:yellow;cursor:pointer;">&times;</span>
   <a href="" class="item" th:href="@{/dashboard}"><i class="fas fa-home"></i>Home</a>
   <a href="" class="item"><i class="fas fa-user-circle"></i>Profile</a>
   <a href="" class="item"><i class="fas fa-id-card-alt"></i>Questions</a>
@@ -65,7 +65,7 @@
 
 <!--CONTENT-->
 <div class="content mt-5">
-  <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+  <i onclick="toggleSidebar()" class="fas fa-bars m-3" style="cursor:pointer;"></i>
   <div th:replace="${content}"></div>
 </div>
 

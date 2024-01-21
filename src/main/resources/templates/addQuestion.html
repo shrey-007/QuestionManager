@@ -44,15 +44,28 @@
 
 <!--                image-->
                 <div class="custom-file">
+                    <label for="imageName">Upload Image</label>
                     <input type="file" name="imageName">
                 </div>
                 <!--                file-->
                 <div class="custom-file">
+                    <label for="fileName">Upload File</label>
                     <input type="file" name="fileName">
                 </div>
 
                 <div class="container text-center">
                     <button class="btn btn-outline-primary">Save</button>
+                </div>
+
+<!--                <div class="container" th:if="${session.message}">-->
+<!--                    <div th:classappend="${'alert-'+session.message.type}" class="alert text-center" role="alert">-->
+<!--                        <span th:text="${session.message.content}"></span>-->
+<!--                    </div>-->
+<!--                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
+<!--                </div>-->
+                <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                    <p class="text-center" th:text="${session.message.content}"></p>
+                    <th:block th:remove="all"></th:block>
                 </div>
 
 

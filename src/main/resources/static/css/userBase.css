@@ -56,3 +56,19 @@
  font-size:36px;
  cursor:pointer;
 }
+
+/*pagination*/
+.pagination li a{
+  background-color: yellow;
+  color: black;
+  border-radius: 30%;
+  margin: 2%;
+ }
+ .pagination li a:hover{
+  background-color: black;
+  color: yellow;
+ }
+ .cus{
+  background-color: grey !important;
+   color: black !important;
+ }

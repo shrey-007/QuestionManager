@@ -7,7 +7,43 @@
 <body>
 
 <section>
-  <h1 th:text="${user.name}"></h1>
+<!--  TABLE START-->
+  <div class="card mr-3 ml-3" style="background-color:#221d1d;">
+    <div class="card-body">
+      <h1 class="text-center" style="color:white;">Your Questions</h1>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col" th:text style="color:white;">#</th>
+          <th scope="col" style="color:white;">Title</th>
+        </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="q : ${questions}">
+            <td scope="row" style="color:white;">1</td>
+            <td th:text="${q.name}" style="color:white;"></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+      <!--  PAGINATION-->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" th:if="${currentPage != 0}"><a class="page-link" href="#" th:href="@{'/showQuestions/'+${currentPage-1}}">Previous</a></li>
+          <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link" href="#" th:href="@{'/showQuestions/'+${i-1}}"><span th:text="${i}"></span></a></li>
+          <li class="page-item" th:if="${currentPage+1 != totalPages}"><a class="page-link" href="#" th:href="@{'/showQuestions/'+${currentPage+1}}">Next</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+
+
+
+
 </section>
 
 

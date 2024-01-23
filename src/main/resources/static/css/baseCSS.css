@@ -52,3 +52,38 @@ footer div a i {
   padding:20px;
   background:#ffffff;
 }*/
+
+/* home page cards */
+
+.homeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.homeContainerItems {
+  width: 250px;
+  height: 300px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #221d1d;
+  color:white;
+  transition: transform 0.3s ease-in-out;
+
+  /* Optional: Add more styling for your cards */
+}
+
+.homeContainerItems:hover {
+  transform: scale(1.05);
+}
+
+/* Optional: Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .homeContainerItems {
+    width: 100%;
+  }
+}

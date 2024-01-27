@@ -24,7 +24,8 @@
 
           <tr th:each="q : ${questions}">
             <td scope="row" style="color:white;">1</td>
-            <td th:text="${q.name}" style="color:white;"></td>
+<!--            we are sending to next page via url rewriting quki dekho url mai qid add kri hai-->
+            <td><a th:href="@{'/question/'+${q.qid}}"><span th:text="${q.name}" style="color:white;"></span></a></td>
 <!--            this row will only show code and show file if it is uploaded by user else no-->
             <td><span th:if="${q.imageName != null}"><a th:href="@{'/images/'+${q.imageName}}">Show Code</a></span></td>
             <td><span th:if="${q.fileName != null}"><a th:href="@{'/files/'+${q.fileName}}">Show File</a></span></td>

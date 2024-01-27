@@ -23,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -99,6 +100,20 @@ public class UserController {
         model.addAttribute("currentPage",page);
         model.addAttribute("totalPages",questionList.getTotalPages());
         return "showQuestions";
+    }
+
+    @RequestMapping("/question/{qid}")
+    public String showContactDetails(@PathVariable("qid") Integer qid, Model model,HttpSession session){
+        //fetch current user
+        User user=(User) session.getAttribute("currentUser");
+        model.addAttribute("user",user);
+
+        //fetch question by qid
+        Optional<Question> questionOptional=this.questionRepository.findById(qid);
+        Question question=questionOptional.get();
+        model.addAttribute("question",question);
+
+        return "showContactDetail";
     }
 
 }

@@ -7,10 +7,42 @@
 <body>
 
 <section>
-<!--  TABLE START-->
+
+
   <div class="card mr-3 ml-3" style="background-color:#221d1d;">
     <div class="card-body">
       <h1 class="text-center" style="color:white;">Your Questions</h1>
+      <!-- SEARCH BAR     -->
+      <div class="search-container my-4">
+        <!--isee input lenge ki kya search krna hai and voh backend pr bhejege and result search result mai bhejege        -->
+        <!--onleyup is an javascipt event, toh jaise hi user search bar mai kuch daalega toh search function call hoga      -->
+        <input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your Question">
+        <div class="search-result">
+          <!--this is search result-->
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--  TABLE START-->
       <table class="table">
         <thead>
         <tr>
@@ -33,6 +65,8 @@
 
         </tbody>
       </table>
+
+<!--      TABLE END-->
 
 
       <!--  PAGINATION-->

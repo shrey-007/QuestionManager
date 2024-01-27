@@ -18,4 +18,8 @@ public interface QuestionRepository extends JpaRepository<Question,Integer> {
     @Query(value = "select * from question where user_id=:userId",nativeQuery = true)
     public Page<Question> findQuestionsByUser(@Param("userId") int userId, Pageable pageable);
 
+    //ye method search-bar  ke liye hai.vaha se user and and keyword aaega and user ke saare questions jisme vo keyword ho, unki list
+    //fetch hokr aaegi.we dont need to provide implementation of this method.Spring boot will itself do it .
+    public List<Question> findByNameContainingAndUser(String keyword,User user);
+
 }

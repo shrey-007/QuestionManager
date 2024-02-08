@@ -116,4 +116,39 @@ public class UserController {
         return "showContactDetail";
     }
 
+
+    //for changing password
+    @GetMapping("/profile")
+    public String openProfile(HttpSession session,Model model){
+
+        User user=(User) session.getAttribute("currentUser");
+        model.addAttribute("user",user);
+
+        return "profile";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePassword(HttpSession session,Model model,@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword){
+
+        User user=(User) session.getAttribute("currentUser");
+        model.addAttribute("user",user);
+
+        //check whether oldPassword is correct or not
+        if(!user.getPassword().equals(oldPassword)){
+            //send a message that oldPassword is wrong
+            session.setAttribute("message",new Message("Wrong Password","alert-danger"));
+            return "profile";
+        }
+        else{
+            user.setPassword(newPassword);
+            userRepository.save(user);
+
+            //send message that password is updated
+            session.setAttribute("message",new Message("Your Password has been changed","alert-success"));
+            return "profile";
+        }
+
+    }
+
+
 }

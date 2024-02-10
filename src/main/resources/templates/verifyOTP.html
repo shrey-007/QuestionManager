@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<section>
+
+
+  <section>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="alert alert-success" role="alert">
+              We have sent a OTP on your registered Email address, please enter the OTP to verify
+            </div>
+
+            <form th:action="@{/verify-otp}" method="post">
+              <input name="otp" type="text" placeholder="Enter here" class="form-control" required>
+
+              <button>Verify OTP</button>
+
+              <!--              jab session se message tabhi ye dikhega-->
+              <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                <p class="text-center" th:text="${session.message.content}"></p>
+                <th:block th:remove="all"></th:block>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</section>
+
+
+</body>
+</html>

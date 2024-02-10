@@ -58,7 +58,7 @@
               <!--              jab session se message tabhi ye dikhega-->
               <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
                 <p class="text-center" th:text="${session.message.content}"></p>
-                <th:block th:remove="all"></th:block>
+                <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
               </div>
 
               <br>

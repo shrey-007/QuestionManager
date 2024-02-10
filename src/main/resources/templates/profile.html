@@ -7,16 +7,13 @@
 <body>
 
 <section>
-  <h1 th:text="${user.name}"></h1>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-body">
-
-            <h3 class="my-3">Change Password</h3>
-
+  <div class="card mr-3 ml-3" style="background-color:black;">
+    <div class="card-body">
+      <h3 class="text-center" style="color:white;">Change Password</h3>
+      <div class="container-fluid mt-1">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
             <form th:action="@{/changePassword}" method="post">
 
               <div class="form-group">
@@ -33,12 +30,12 @@
                 <th:block th:remove="all"></th:block>
               </div>
 
-              <button type="submit">
-                Change
-              </button>
+
+              <div class="container text-center">
+                <button class="btn btn-primary button-custom">Change</button>
+              </div>
 
             </form>
-
           </div>
         </div>
       </div>

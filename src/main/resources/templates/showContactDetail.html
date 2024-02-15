@@ -7,8 +7,75 @@
 <body>
 
 <section>
-  <h1 th:text="${user.name}"></h1>
-  <h1 th:text="${question.name}"></h1>
+<!--  <h1 th:text="${user.name}"></h1>-->
+<!--  <h1 th:text="${question.name}"></h1>-->
+
+  <div class="card-q">
+    <div class="card-left">
+      <!-- Problem name -->
+      <h3 th:text="${question.name}"></h3>
+
+      <!-- Problem Statement -->
+      <h4 th:text="${question.description}"></h4>
+
+        <!-- hint -->
+        <button style="cursor: pointer;" onclick="toggleHint()" class="btn btn-primary button-custom">Hint</button>
+
+        <div id="hint" style="display:none;">
+          use hashmap
+        </div>
+
+
+
+        <br>
+        <br>
+
+        <!-- topics -->
+
+        <h4>Topics</h4>
+
+        <div class="topics">
+          <div class="topic">
+            Dynamic Programming
+          </div>
+          <div class="topic">
+            Greedy
+          </div>
+          <div class="topic">
+            Sorting
+          </div>
+          <div class="topic">
+            Recursion
+          </div>
+          <div class="topic">
+            Hashing
+          </div>
+          <div class="topic">
+            memoisation
+          </div>
+          <div class="topic">
+            memoisation
+          </div>
+          <div class="topic">
+            memoisation
+          </div>
+          <div class="topic">
+            memoisation
+          </div>
+        </div>
+
+    </div>
+
+
+    <div class="card-right">
+      <span th:text="${question.notes}"></span>
+      <br>
+      <br>
+      <a style="cursor: pointer;"  class="btn btn-primary button-custom">Code</a>
+
+    </div>
+
+  </div>
 </section>
 
 

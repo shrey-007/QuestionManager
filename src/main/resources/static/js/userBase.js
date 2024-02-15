@@ -46,3 +46,16 @@ const search=()=>{
 
   }
 }
+
+
+
+ /*to display hint in single question page*/
+
+
+     function toggleHint(){
+         let hint=document.getElementById("hint");
+         if(hint.style.display=="none"){
+             hint.style.display="block";}
+         else{
+             hint.style.display="none";}
+     }

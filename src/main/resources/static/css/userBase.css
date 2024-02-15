@@ -91,3 +91,34 @@
    background-color:yellow;
    color:black;
  }
+
+ /*for the single question*/
+  .card-q{
+      display: flex;
+      justify-content:space-around;
+      background-color: black;
+      padding: 1%;
+  }
+  .card-left{
+      width: 45%;
+      padding: 5%;
+      background-color: grey;
+  }
+  .card-right{
+      width: 45%;
+      padding: 5%;
+      background-color: grey;
+  }
+  /*for topics*/
+     .topics{
+         display: flex;
+         flex-wrap: wrap;
+     }
+     .topic{
+         margin: 0.7%;
+         background-color:yellow;
+         color:black;
+         border:2px solid black;
+         border-radius:25%;
+         padding:0.3%;
+     }

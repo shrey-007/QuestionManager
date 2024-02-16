@@ -150,5 +150,24 @@ public class UserController {
 
     }
 
+    @RequestMapping("/toDo")
+    public String toDo(Model model,HttpSession session,@RequestParam("toDo") String newTask){
+        //get the user
+        User user=(User) session.getAttribute("currentUser");
+
+        //add the task
+        String tasks=user.getToDo();
+        if(tasks==null){tasks=newTask;}
+        else{tasks=tasks+newTask;}
+
+        user.setToDo(tasks);
+
+        userRepository.save(user);
+
+        model.addAttribute("user",user);
+
+        return "dashboard";
+    }
+
 
 }

@@ -59,3 +59,14 @@ const search=()=>{
          else{
              hint.style.display="none";}
      }
+
+
+     /*to display to do list*/
+function toggleToDo(){
+        console.log("hi rjfoufbi");
+         let hint=document.getElementById("toDoForm");
+         if(hint.style.display=="none"){
+             hint.style.display="block";}
+         else{
+             hint.style.display="none";}
+     }

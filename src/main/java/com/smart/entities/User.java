@@ -22,6 +22,9 @@ public class User {
     @Size(min=3,max=100,message = "Minimum 3 and Maximum 100 characters allowed")
     private String about;
 
+    private String toDo;
+
+
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Question> questions=new ArrayList<>();
 
@@ -82,6 +85,14 @@ public class User {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public String getToDo() {
+        return toDo;
+    }
+
+    public void setToDo(String toDo) {
+        this.toDo = toDo;
     }
 
     @Override

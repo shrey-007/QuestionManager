@@ -68,6 +68,24 @@
 
 
     <div class="card-right">
+
+      <button class="btn btn-primary button-custom" onclick="editNote()"><i class="fas fa-edit"></i></button>
+      <br>
+<!--      to edit the note-->
+<!--      /question/${question.qid}-->
+      <form th:action="@{/editNote}" style="display:none;background-color:black;padding:1%;" id="editNoteForm">
+        <br>
+
+        <div class="form-group">
+          <label for="note" style="color:white;">Add Note</label>
+          <input name="note" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Here"  required>
+        </div>
+        <input type="hidden" th:value="${question.qid}" name="qqid">
+
+        <button class="btn btn-primary button-custom"  type="submit">Edit Note</button>
+
+      </form>
+<!--      to display note-->
       <span th:text="${question.notes}"></span>
       <br>
       <br>

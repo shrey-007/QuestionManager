@@ -70,3 +70,12 @@ function toggleToDo(){
          else{
              hint.style.display="none";}
      }
+     /*to edit notes of a question*/
+function editNote(){
+        let hint=document.getElementById("editNoteForm");
+         if(hint.style.display=="none"){
+             hint.style.display="block";}
+         else{
+             hint.style.display="none";}
+
+}

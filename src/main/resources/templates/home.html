@@ -6,6 +6,7 @@
 </head>
 <body>
  <section>
+     <script>document.body.style.backgroundColor = 'black';</script>
      <div class="banner d-flex justify-content-center align-items-center">
          <div class="text-center">
              <h1>Questions Manager</h1>
@@ -24,8 +25,8 @@
 
 
      <div class="container">
-         <div class="left-element">Left Element</div>
-         <div class="right-element">Right Element</div>
+         <div class="left-element">Welcome to my competitive programming hub! Explore solved coding challenges, algorithms, data structures, and expert solutions. Enhance your skills with hints, notes, and code snippets. Track your progress, master coding interviews, and join our supportive community.</div>
+         <div class="right-element">Welcome to the heart of competitive programming brilliance! Embark on a journey of intellectual exploration. Empower yourself with tools to tackle coding challenges, master algorithms, and hone your problem-solving skills. Join our vibrant community, embrace challenges.</div>
      </div>
 
      <br>
@@ -36,17 +37,19 @@
 window.addEventListener('scroll', function() {
   const container = document.querySelector('.container');
   const containerRect = container.getBoundingClientRect();
+  const containerMiddle = containerRect.top + containerRect.height / 2; // Calculate middle of container
   const viewportHeight = window.innerHeight;
 
-  if (containerRect.top <= viewportHeight) {
-    /* Container is visible on screen, trigger animations */
+  if (containerMiddle <= viewportHeight) {
+    /* Container middle is visible on screen, trigger animations */
     document.querySelector('.left-element').style.animation = 'slide-in 1s ease-in-out forwards';
     document.querySelector('.right-element').style.animation = 'slide-out 1s ease-in-out forwards';
     typeWriter();
   }
 });
 
-const text = "This text will be typed with JavaScript.";
+
+const text = "Making notes of Competive Programming Questions is now easy";
 const typedTextElement = document.getElementById('typing-text');
 let i = 0;
 

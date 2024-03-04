@@ -60,6 +60,7 @@ footer div a i {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  width:200%;
 }
 
 .homeContainerItems {
@@ -86,4 +87,46 @@ footer div a i {
   .homeContainerItems {
     width: 100%;
   }
+}
+
+.container {
+  position: relative; /* Needed for absolute positioning of child elements */
+  overflow: hidden;  /* Ensures content doesn't overflow the container */
+  height: 300px;     /* Set a height for the container (adjust as needed) */
+}
+
+.left-element,
+.right-element {
+  position: absolute; /* Positions elements relative to container */
+  top: 50%;           /* Vertically centers elements(ye asal mai flexbox(container) ke center mai kr rha hai ) */
+  transform: translateY(-50%); /* Adjusts vertical positioning based on element heights */
+  width: 200px;        /* Set desired width for elements */
+  height: 100px;       /* Set desired height for elements */
+  background-color: #221d1d;  /* Set background color for elements */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color:white;
+  padding:1%;
+}
+
+.left-element {
+  left: 0;  /* Positions element at the left edge */
+  transform: translateX(-100%); /* Moves element 100% off-screen to the left initially */
+}
+
+.right-element {
+  right: 0; /* Positions element at the right edge */
+  transform: translateX(100%); /* Moves element 100% off-screen to the right initially */
+}
+
+/* Animation for scrolling effect */
+@keyframes slide-in {
+  from { transform: translateX(-100%); } /* Left element starts off-screen left */
+  to   { transform: translateX(0); }   /* Left element moves to center on scroll */
+}
+
+@keyframes slide-out {
+  from { transform: translateX(100%); } /* Right element starts off-screen right */
+  to   { transform: translateX(0); }   /* Right element moves to center on scroll */
 }

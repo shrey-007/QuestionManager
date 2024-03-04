@@ -17,19 +17,30 @@
 
      <br>
      <br>
-     <div class="homeContainer">
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at aut cumque debitis dolor dolores ea est, facilis ipsam iure magnam minima necessitatibus nobis odio omnis provident repudiandae saepe vero.</div>
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aspernatur consequatur consequuntur, dolorem doloribus eaque hic libero minus, nostrum porro quia tempore, velit vitae voluptatem voluptates voluptatibus? Aut, ducimus!</div>
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum obcaecati, quae quas quia repellat temporibus ullam. Consequuntur, doloribus dolorum eaque incidunt minima molestiae natus officia reiciendis sapiente sunt voluptates voluptatibus!</div>
 
-
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at aut cumque debitis dolor dolores ea est, facilis ipsam iure magnam minima necessitatibus nobis odio omnis provident repudiandae saepe vero.</div>
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at aut cumque debitis dolor dolores ea est, facilis ipsam iure magnam minima necessitatibus nobis odio omnis provident repudiandae saepe vero.</div>
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at aut cumque debitis dolor dolores ea est, facilis ipsam iure magnam minima necessitatibus nobis odio omnis provident repudiandae saepe vero.</div>
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at aut cumque debitis dolor dolores ea est, facilis ipsam iure magnam minima necessitatibus nobis odio omnis provident repudiandae saepe vero.</div>
-
-         <div class="homeContainerItems">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem deleniti doloribus ducimus hic ipsam ipsum laboriosam natus necessitatibus nesciunt pariatur praesentium quae quod, temporibus velit? Deserunt dignissimos exercitationem maiores!</div>
+     <div class="container">
+         <div class="left-element">Left Element</div>
+         <div class="right-element">Right Element</div>
      </div>
+
+     <br>
+     <br>
+     <br>
+
+     <script>
+window.addEventListener('scroll', function() {
+  const container = document.querySelector('.container');
+  const containerRect = container.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  if (containerRect.top <= viewportHeight) {
+    /* Container is visible on screen, trigger animations */
+    document.querySelector('.left-element').style.animation = 'slide-in 1s ease-in-out forwards';
+    document.querySelector('.right-element').style.animation = 'slide-out 1s ease-in-out forwards';
+  }
+});
+
+    </script>
 
 
  </section>

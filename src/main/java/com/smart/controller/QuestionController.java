@@ -1,7 +1,9 @@
 package com.smart.controller;
 
 import com.smart.entities.Question;
+import com.smart.entities.QuestionExplaination;
 import com.smart.entities.User;
+import com.smart.model.QuestionExplainationRepository;
 import com.smart.model.QuestionRepository;
 import com.smart.model.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +24,9 @@ public class QuestionController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private QuestionExplainationRepository questionExplainationRepository;
+
     @RequestMapping("/editNote")
     public String editNote(@RequestParam("note") String note, HttpSession session, Model model,@RequestParam("qqid") String qqid){
         //get the user
@@ -36,14 +41,14 @@ public class QuestionController {
         System.out.println("============================================================================================================================================================================================"+qid+"======="+note);
 
         //change the note in question
-        question.setNotes(note);
+        QuestionExplaination questionExplaination=new QuestionExplaination(qid,note);
+        questionExplainationRepository.save(questionExplaination);
 
-        //save the question
-        questionRepository.save(question);
 
         //return
         model.addAttribute("user",user);
         model.addAttribute("question",question);
+        model.addAttribute("questionExplaination",questionExplaination);
         return "showContactDetail";
     }
 }

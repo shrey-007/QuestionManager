@@ -85,8 +85,8 @@
         <button class="btn btn-primary button-custom"  type="submit">Edit Note</button>
 
       </form>
-<!--      to display note-->
-      <span th:text="${question.notes}"></span>
+<!--      to display note using pre tag , beacause jo explaination store kra hai usme line break and spaces bhi ho skti hai toh usko directly dispay krne pr vo gayab ho jaaegi toh pre tag ke under kra hai-->
+      <span><pre th:if="${questionExplaination.explaination != null}" th:text="${questionExplaination.explaination}"></pre></span>
       <br>
       <br>
       <a style="cursor: pointer;"  class="btn btn-primary button-custom">Code</a>

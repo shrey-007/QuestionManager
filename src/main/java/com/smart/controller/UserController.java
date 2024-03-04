@@ -1,8 +1,10 @@
 package com.smart.controller;
 
 import com.smart.entities.Question;
+import com.smart.entities.QuestionExplaination;
 import com.smart.entities.User;
 import com.smart.helper.Message;
+import com.smart.model.QuestionExplainationRepository;
 import com.smart.model.QuestionRepository;
 import com.smart.model.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,8 @@ public class UserController {
     private QuestionRepository questionRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private QuestionExplainationRepository questionExplainationRepository;
     @RequestMapping("/addQuestion")
     public String addQuestion(Model model, HttpSession session){
         //get current user
@@ -45,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/saveQuestion")
-    public String saveQuestion(Model model, HttpSession session, @ModelAttribute Question question, BindingResult bindingResult, @RequestParam("fileName")MultipartFile file,@RequestParam("imageName")MultipartFile image){
+    public String saveQuestion(Model model, HttpSession session, @ModelAttribute Question question, BindingResult bindingResult, @RequestParam("fileName")MultipartFile file,@RequestParam("imageName")MultipartFile image,@RequestParam("notes") String notes){
         try{
             //get user
             User user=(User) session.getAttribute("currentUser");
@@ -71,6 +75,8 @@ public class UserController {
             user.getQuestions().add(question);
             //update user in database
             userRepository.save(user);
+            //saving the explaination of the question in mongo db
+            questionExplainationRepository.save(new QuestionExplaination(question.getQid(),notes));
             //we can do the same by making QuestionRepository
             session.setAttribute("message",new Message("Added Successfully","success"));
             return "addQuestion";
@@ -88,6 +94,7 @@ public class UserController {
     //{page} is a dynamic variable which denotes ki pagination mai currently konse page pr ho
     @GetMapping("/showQuestions/{page}")
     public String showQuestions(@PathVariable("page") Integer page, Model model,HttpSession session){
+        //get the user
         User user=(User) session.getAttribute("currentUser");
         model.addAttribute("user",user);
 
@@ -112,6 +119,10 @@ public class UserController {
         Optional<Question> questionOptional=this.questionRepository.findById(qid);
         Question question=questionOptional.get();
         model.addAttribute("question",question);
+
+        //fetch the explaination of the question using qid
+        QuestionExplaination questionExplaination=questionExplainationRepository.findByQid(qid);
+        model.addAttribute("questionExplaination",questionExplaination);
 
         return "showContactDetail";
     }

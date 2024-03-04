@@ -11,8 +11,9 @@ public class Question {
     private int qid;
     private String name;
     private String description;
-    private String notes;
-    private String fileName;
+
+
+    private String fileName; //fileName is name of the containing the code
     private String imageName;
     @ManyToOne
     @JsonIgnore
@@ -43,13 +44,6 @@ public class Question {
         this.description = description;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 
     public String getFileName() {
         return fileName;
@@ -78,20 +72,18 @@ public class Question {
     public Question() {
     }
 
-    public Question(String name, String description, String notes, String fileName, String imageName, User user) {
+    public Question(String name, String description, String fileName, String imageName, User user) {
         this.name = name;
         this.description = description;
-        this.notes = notes;
         this.fileName = fileName;
         this.imageName = imageName;
         this.user = user;
     }
 
-    public Question(int qid, String name, String description, String notes, String fileName, String imageName, User user) {
+    public Question(int qid, String name, String description, String fileName, String imageName, User user) {
         this.qid = qid;
         this.name = name;
         this.description = description;
-        this.notes = notes;
         this.fileName = fileName;
         this.imageName = imageName;
         this.user = user;
@@ -103,7 +95,6 @@ public class Question {
                 "qid=" + qid +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", notes='" + notes + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", imageName='" + imageName + '\'' +
                 '}';

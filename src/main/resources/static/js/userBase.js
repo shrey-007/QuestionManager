@@ -72,10 +72,18 @@ function toggleToDo(){
      }
      /*to edit notes of a question*/
 function editNote(){
-        let hint=document.getElementById("editNoteForm");
-         if(hint.style.display=="none"){
-             hint.style.display="block";}
+        let form=document.getElementById("editNoteForm");
+        let notes=document.getElementById("notes");
+//        let rightCard=getElementsByClassName('card-right');
+         if(form.style.display=="none"){
+             form.style.display="block";
+             notes.style.display="none";
+//             rightCard.style.padding:0.5%;
+             }
          else{
-             hint.style.display="none";}
+             form.style.display="none";
+             notes.style.display="block";
+//             rightCard.style.padding:5%;
+             }
 
 }

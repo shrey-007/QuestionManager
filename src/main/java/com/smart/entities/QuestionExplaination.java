@@ -1,6 +1,7 @@
 package com.smart.entities;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class QuestionExplaination {
 
+    @Id
     private int qid;
     private String explaination;
 

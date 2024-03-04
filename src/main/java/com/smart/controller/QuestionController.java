@@ -41,7 +41,8 @@ public class QuestionController {
         System.out.println("============================================================================================================================================================================================"+qid+"======="+note);
 
         //change the note in question
-        QuestionExplaination questionExplaination=new QuestionExplaination(qid,note);
+        QuestionExplaination questionExplaination=questionExplainationRepository.findByQid(qid);
+        questionExplaination.setExplaination(note);
         questionExplainationRepository.save(questionExplaination);
 
 

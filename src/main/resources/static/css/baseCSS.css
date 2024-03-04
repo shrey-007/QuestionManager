@@ -54,7 +54,7 @@ footer div a i {
 }*/
 
 /* home page cards */
-
+/*now they are not in use as i have included animations*/
 .homeContainer {
   display: flex;
   flex-wrap: wrap;
@@ -89,19 +89,20 @@ footer div a i {
   }
 }
 
+/*home page animations*/
 .container {
   position: relative; /* Needed for absolute positioning of child elements */
   overflow: hidden;  /* Ensures content doesn't overflow the container */
-  height: 300px;     /* Set a height for the container (adjust as needed) */
+  height:500px;     /* Set a height for the container (adjust as needed) */
 }
 
 .left-element,
 .right-element {
   position: absolute; /* Positions elements relative to container */
-  top: 50%;           /* Vertically centers elements(ye asal mai flexbox(container) ke center mai kr rha hai ) */
+  top: 20%;           /* Vertically centers elements(ye asal mai flexbox(container) ke center mai kr rha hai ) */
   transform: translateY(-50%); /* Adjusts vertical positioning based on element heights */
-  width: 200px;        /* Set desired width for elements */
-  height: 100px;       /* Set desired height for elements */
+  width: 300px;        /* Set desired width for elements */
+  height: 400px;       /* Set desired height for elements */
   background-color: #221d1d;  /* Set background color for elements */
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -130,3 +131,22 @@ footer div a i {
   from { transform: translateX(100%); } /* Right element starts off-screen right */
   to   { transform: translateX(0); }   /* Right element moves to center on scroll */
 }
+
+/*typing animation*/
+.typing-text {
+  text-align:center;
+  overflow: hidden; /* Hides overflowing content */
+  border-right: 3px solid yellow; /* Simulates cursor */
+  white-space: nowrap; /* Prevents wrapping */
+  /*animation: typing 3s steps(40, end) forwards;*/ /* Animation properties */
+  background-color: black;
+  color: yellow;
+  font-size: 3em;
+  font-family: cursive;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+

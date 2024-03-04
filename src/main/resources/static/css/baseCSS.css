@@ -90,11 +90,7 @@ footer div a i {
 }
 
 /*home page animations*/
-.container {
-  position: relative; /* Needed for absolute positioning of child elements */
-  overflow: hidden;  /* Ensures content doesn't overflow the container */
-  height:500px;     /* Set a height for the container (adjust as needed) */
-}
+
 
 .left-element,
 .right-element {

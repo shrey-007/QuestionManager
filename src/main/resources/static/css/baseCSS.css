@@ -138,15 +138,10 @@ footer div a i {
   overflow: hidden; /* Hides overflowing content */
   border-right: 3px solid yellow; /* Simulates cursor */
   white-space: nowrap; /* Prevents wrapping */
-  /*animation: typing 3s steps(40, end) forwards;*/ /* Animation properties */
   background-color: black;
   color: yellow;
   font-size: 3em;
   font-family: cursive;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
 

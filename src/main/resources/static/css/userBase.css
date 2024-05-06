@@ -127,3 +127,14 @@
      color:white;
      background-color:white;
      }
+
+     /*Table*/
+     .custom-link {
+         text-decoration: none;
+         color: white;
+     }
+
+     .custom-link:hover {
+         color: /* Your desired hover color */;
+         text-decoration: none; /* Removes underline on hover */
+     }

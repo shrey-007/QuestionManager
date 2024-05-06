@@ -55,12 +55,14 @@ public class UserController {
             User user=(User) session.getAttribute("currentUser");
             model.addAttribute("user",user);
 
+            System.out.println("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"+file+"ewcsdvsc0"+image);
             //uploading file
             if(!file.isEmpty()){
                 question.setFileName(file.getOriginalFilename());
                 File savedFile=new ClassPathResource("static/files").getFile();
                 Path path=Paths.get(savedFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
                 Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("11111111111111111111111111111111111111111111111111111111111111111111111111111111111111"+file);
             }
             //uploading image
             if(!image.isEmpty()){
@@ -68,6 +70,7 @@ public class UserController {
                 File savedFile=new ClassPathResource("static/images").getFile();
                 Path path=Paths.get(savedFile.getAbsolutePath()+File.separator+image.getOriginalFilename());
                 Files.copy(image.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("22222222222222222222222222222222222222222222222222222222222222222222222222222222222222"+image);
             }
             question.setUser(user);
 

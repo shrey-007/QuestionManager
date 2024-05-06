@@ -89,7 +89,11 @@
       <span><pre th:if="${questionExplaination.explaination != null}" th:text="${questionExplaination.explaination}" style="white-space: pre-wrap;" id="notes"></pre></span>
       <br>
       <br>
-      <a style="cursor: pointer;"  class="btn btn-primary button-custom">Code</a>
+<!--      <a style="cursor: pointer;"  class="btn btn-primary button-custom" th:href="@{'/target/classes/static/files'+question.fileName}">Code</a>-->
+      <a style="cursor: pointer;" class="btn btn-primary button-custom" th:href="@{'/files/' + ${question.fileName}}">Code</a>
+      <a style="cursor: pointer;" class="btn btn-primary button-custom" th:href="@{'/images/' + ${question.imageName}}">Image</a>
+
+<!--      th:href="@{'/files/' + ${file}}"-->
 
     </div>
 

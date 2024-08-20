@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private QuestionRepository questionRepository;
@@ -35,6 +36,14 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private QuestionExplainationRepository questionExplainationRepository;
+
+    @RequestMapping("/dashboard")
+    public String dashboard(Model model,HttpSession session){
+        User user=(User) session.getAttribute("currentUser");
+        model.addAttribute("user",user);
+        return "dashboard";
+    }
+
     @RequestMapping("/addQuestion")
     public String addQuestion(Model model, HttpSession session){
         //get current user

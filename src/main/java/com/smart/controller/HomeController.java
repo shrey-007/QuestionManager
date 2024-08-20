@@ -6,6 +6,7 @@ import com.smart.model.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
 
@@ -53,6 +56,10 @@ public class HomeController {
                model.addAttribute("user",user);
                return "signup";
            }
+
+           // user ka password database mai encode krke save krna hai
+           user.setPassword(passwordEncoder.encode(user.getPassword()));
+
            //save user in database
            User result=this.userRepository.save(user);
 
@@ -83,16 +90,20 @@ public class HomeController {
     public String check(@RequestParam(value = "email")String email,@RequestParam(value = "password")String password,HttpSession session,Model model){
         //get user from email as email is unique
         User user=userRepository.findByEmail(email);
+        System.out.println("----start---");
+
 
 
         //check whether user is null or not, coz maybe email jo usne daala vo database m ho hi na
         //also check whether the user password is correct or not
         try{
-            if(user==null || !(user.getPassword().equals(password))){
+            System.out.println("----try---");
+            if(user==null || !passwordEncoder.matches(password,user.getPassword())){
                 throw new Exception("Incorrect Username or Password");
             }
         }
         catch (Exception e){
+            System.out.println("----exception---");
             session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
             model.addAttribute("user",new User());
             //agar exception aayi toh vaapis login page pr chala jaaega agar nhi aayi tab dashboard pr jaaega.
@@ -103,16 +114,11 @@ public class HomeController {
 
         //send user to dashboard
         model.addAttribute("user",user);
+        System.out.println("----processed---");
 
-        return "dashboard";
+        return "redirect:/user/dashboard";
     }
 
-    @RequestMapping("/dashboard")
-    public String dashboard(Model model,HttpSession session){
-        User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
-        return "dashboard";
-    }
 
     @RequestMapping("/logout")
     public String logout(Model model,HttpSession session){

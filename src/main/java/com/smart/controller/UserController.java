@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +38,9 @@ import java.util.Optional;
 public class UserController {
 
     Logger logger= LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private QuestionRepository questionRepository;
     @Autowired
@@ -62,8 +66,7 @@ public class UserController {
     public String saveQuestion(Model model, HttpSession session, @ModelAttribute Question question, BindingResult bindingResult, @RequestParam("fileName")MultipartFile file,@RequestParam("imageName")MultipartFile image,@RequestParam("notes") String notes){
         try{
             //get user
-            User user=(User) session.getAttribute("currentUser");
-            model.addAttribute("user",user);
+            User user=(User) model.getAttribute("user");
 
             System.out.println("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"+file+"ewcsdvsc0"+image);
             //uploading file
@@ -108,7 +111,7 @@ public class UserController {
     @GetMapping("/showQuestions/{page}")
     public String showQuestions(@PathVariable("page") Integer page, Model model,HttpSession session){
         //get the user
-        User user=(User) session.getAttribute("currentUser");
+        User user=(User) model.getAttribute("user");
 
         //this pageable contains information of current page and no. of questions per page
         Pageable pageable =PageRequest.of(page,3);
@@ -124,8 +127,7 @@ public class UserController {
     @RequestMapping("/question/{qid}")
     public String showContactDetails(@PathVariable("qid") Integer qid, Model model,HttpSession session){
         //fetch current user
-        User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
+        User user=(User) model.getAttribute("user");
 
         //fetch question by qid
         Optional<Question> questionOptional=this.questionRepository.findById(qid);
@@ -147,32 +149,23 @@ public class UserController {
     }
 
     @PostMapping("/changePassword")
-    public String changePassword(HttpSession session,Model model,@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword){
+    public String changePassword(HttpSession session,Model model,@RequestParam("newPassword") String newPassword){
 
-        User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
+        User user=(User) model.getAttribute("user");
 
-        //check whether oldPassword is correct or not
-        if(!user.getPassword().equals(oldPassword)){
-            //send a message that oldPassword is wrong
-            session.setAttribute("message",new Message("Wrong Password","alert-danger"));
-            return "profile";
-        }
-        else{
-            user.setPassword(newPassword);
-            userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(newPassword));
 
-            //send message that password is updated
-            session.setAttribute("message",new Message("Your Password has been changed","alert-success"));
-            return "profile";
-        }
+        userRepository.save(user);
 
+        //send message that password is updated
+        session.setAttribute("message",new Message("Your Password has been changed","alert-success"));
+        return "profile";
     }
 
     @RequestMapping("/toDo")
     public String toDo(Model model,HttpSession session,@RequestParam("toDo") String newTask){
         //get the user
-        User user=(User) session.getAttribute("currentUser");
+        User user=(User) model.getAttribute("user");
 
         //add the task
         String tasks=user.getToDo();
@@ -182,9 +175,6 @@ public class UserController {
         user.setToDo(tasks);
 
         userRepository.save(user);
-
-        model.addAttribute("user",user);
-
         return "dashboard";
     }
 

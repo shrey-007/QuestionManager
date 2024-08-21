@@ -3,16 +3,20 @@ package com.smart.controller;
 import com.smart.entities.Question;
 import com.smart.entities.QuestionExplaination;
 import com.smart.entities.User;
+import com.smart.helper.LoggedUserManager;
 import com.smart.helper.Message;
 import com.smart.model.QuestionExplainationRepository;
 import com.smart.model.QuestionRepository;
 import com.smart.model.UserRepository;
 import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +28,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    Logger logger= LoggerFactory.getLogger(UserController.class);
     @Autowired
     private QuestionRepository questionRepository;
     @Autowired
@@ -38,20 +45,14 @@ public class UserController {
     private QuestionExplainationRepository questionExplainationRepository;
 
     @RequestMapping("/dashboard")
-    public String dashboard(Model model,HttpSession session){
-        User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
+    public String dashboard(Model model, HttpSession session, Authentication authentication){
         return "dashboard";
     }
 
     @RequestMapping("/addQuestion")
     public String addQuestion(Model model, HttpSession session){
-        //get current user
-        User user=(User) session.getAttribute("currentUser");
-
         model.addAttribute("title","Add Question");
         //send user to view
-        model.addAttribute("user",user);
         //add a blank object
         model.addAttribute("question",new Question());
         return "addQuestion";
@@ -108,7 +109,6 @@ public class UserController {
     public String showQuestions(@PathVariable("page") Integer page, Model model,HttpSession session){
         //get the user
         User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
 
         //this pageable contains information of current page and no. of questions per page
         Pageable pageable =PageRequest.of(page,3);
@@ -143,10 +143,6 @@ public class UserController {
     //for changing password
     @GetMapping("/profile")
     public String openProfile(HttpSession session,Model model){
-
-        User user=(User) session.getAttribute("currentUser");
-        model.addAttribute("user",user);
-
         return "profile";
     }
 

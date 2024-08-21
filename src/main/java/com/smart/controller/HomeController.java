@@ -1,5 +1,6 @@
 package com.smart.controller;
 
+import com.smart.entities.Providers;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.model.UserRepository;
@@ -59,6 +60,16 @@ public class HomeController {
 
            // user ka password database mai encode krke save krna hai
            user.setPassword(passwordEncoder.encode(user.getPassword()));
+           // since user ne khud se login kiya hai, tabhi is controller pr aaye hai toh provider mai self daaldo
+           user.setProvider(Providers.SELF);
+           user.setProviderUserId(user.getName());
+
+           // also check ki esa toh nhi ki isi user ne google(oauth) se login krke rakha hai toh duplicate entry ho jaaegi iski
+           // and exception aa jaaegi jiuki email uniques hai
+           if(userRepository.findByEmail(user.getEmail())!=null){
+               // means it is duplicate entry
+               throw new Exception("This email is already registered");
+           }
 
            //save user in database
            User result=this.userRepository.save(user);
@@ -84,39 +95,6 @@ public class HomeController {
     public String login(Model model){
         model.addAttribute("user",new User());
         return "login";
-    }
-
-    @RequestMapping("/do_login")
-    public String check(@RequestParam(value = "email")String email,@RequestParam(value = "password")String password,HttpSession session,Model model){
-        //get user from email as email is unique
-        User user=userRepository.findByEmail(email);
-        System.out.println("----start---");
-
-
-
-        //check whether user is null or not, coz maybe email jo usne daala vo database m ho hi na
-        //also check whether the user password is correct or not
-        try{
-            System.out.println("----try---");
-            if(user==null || !passwordEncoder.matches(password,user.getPassword())){
-                throw new Exception("Incorrect Username or Password");
-            }
-        }
-        catch (Exception e){
-            System.out.println("----exception---");
-            session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
-            model.addAttribute("user",new User());
-            //agar exception aayi toh vaapis login page pr chala jaaega agar nhi aayi tab dashboard pr jaaega.
-            return "login";
-        }
-        //create a session for current user
-        session.setAttribute("currentUser",user);
-
-        //send user to dashboard
-        model.addAttribute("user",user);
-        System.out.println("----processed---");
-
-        return "redirect:/user/dashboard";
     }
 
 

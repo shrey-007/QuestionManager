@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/user")
 public class QuestionController {
     @Autowired
     private QuestionRepository questionRepository;
@@ -30,7 +31,7 @@ public class QuestionController {
     @RequestMapping("/editNote")
     public String editNote(@RequestParam("note") String note, HttpSession session, Model model,@RequestParam("qqid") String qqid){
         //get the user
-        User user=(User) session.getAttribute("currentUser");
+        User user=(User) model.getAttribute("user");
 
         int qid=Integer.parseInt(qqid);
 
@@ -47,7 +48,6 @@ public class QuestionController {
 
 
         //return
-        model.addAttribute("user",user);
         model.addAttribute("question",question);
         model.addAttribute("questionExplaination",questionExplaination);
         return "showContactDetail";

@@ -7,6 +7,7 @@ import com.smart.model.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +22,9 @@ public class SearchController {
     @Autowired
     private QuestionRepository questionRepository;
     @GetMapping("/search/{query}")
-    public ResponseEntity<?> search(@PathVariable("query") String query, HttpSession session){
+    public ResponseEntity<?> search(@PathVariable("query") String query, HttpSession session, Model model){
         //fetch user
-        User user=(User)session.getAttribute("currentUser");
+        User user=(User)model.getAttribute("user");
 
         System.out.println(query);
 

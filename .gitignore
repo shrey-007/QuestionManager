@@ -35,4 +35,4 @@ mvnw.cmd
 mvnw
 .mvn
 bug.txt
-
+src/main/resources/application.properties
